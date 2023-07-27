@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+#root {
+  background: rgb(34, 41, 56);
+  background: linear-gradient(
+    166deg,
+    rgb(26, 35, 55) 0%,
+    rgb(4, 2, 44) 50%,
+    rgb(26, 35, 55) 100%
+  );
+}
