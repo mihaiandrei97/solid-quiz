@@ -10,7 +10,7 @@ const WelcomeScreen: Component<{ markAsStarted: () => void }> = ({
     <>
       <img src={NinjaImage} />
       <h1 class="text-3xl text-white">Quiz App</h1>
-      <h1 class="text-3xl text-white">Test your CSS knowledge</h1>
+      <h1 class="text-3xl text-white text-center">Test your CSS knowledge</h1>
       <p class="text-gray-400 max-w-xl text-center">
         Test your CSS knowledge with our quiz app and see if you're a true web
         design whiz!
@@ -30,7 +30,7 @@ const SelectQuiz: Component = () => {
   return (
     <>
       <h1 class="text-4xl mb-8 text-white">Available Quizzes</h1>
-      <ul class="grid grid-cols-3 gap-14 text-center">
+      <ul class="grid grid-cols-1 gap-14 text-center lg:grid-cols-3">
         <For each={quizzes}>
           {(quiz) => {
             return (
@@ -65,7 +65,7 @@ const HomePage: Component = () => {
   }
 
   return (
-    <div class="h-full flex flex-col justify-center items-center gap-5">
+    <div class="flex flex-col justify-center items-center gap-5">
       <Show when={status() === "not-started"} fallback={<SelectQuiz />}>
         <WelcomeScreen markAsStarted={markAsStarted} />
       </Show>

@@ -9,6 +9,7 @@ body,
 }
 
 body {
+  padding: 2rem;
   background: rgb(34, 41, 56);
   background: linear-gradient(
     166deg,

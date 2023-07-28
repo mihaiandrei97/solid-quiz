@@ -2,9 +2,9 @@ import { A, useParams } from "@solidjs/router";
 import { Accessor, Component, For, Show, createSignal } from "solid-js";
 import { IQuestion, getQuestions } from "../utils/quiz";
 
-const TOTAL_NB_OF_QUESTIONS = 3;
+const TOTAL_NB_OF_QUESTIONS = 10;
 
-const Finish: Component<{ score: number }> = ({ score }) => {
+const Finish: Component<{ score: number, total: number }> = ({ score, total }) => {
   return (
     <div class="text-white flex flex-col container max-w-xl m-auto items-center justify-center gap-8">
       <h1 class="text-4xl">Quiz App</h1>
@@ -12,7 +12,7 @@ const Finish: Component<{ score: number }> = ({ score }) => {
       <div class="text-center">
         <h2 class="text-2xl mb-2">Congratulations!</h2>
         <h3 class="text-xl">
-          You scored {score}/{TOTAL_NB_OF_QUESTIONS} right answers.
+          You scored {score}/{total} right answers.
         </h3>
       </div>
       <A class="underline text-lg hover:opacity-95" href="/">
@@ -100,7 +100,6 @@ const QuizPage: Component = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] =
     createSignal<number>(0);
   const currentQuestion = () => questions[currentQuestionIndex()];
-  console.log(currentQuestion);
   const [userTotalScore, setUserTotalScore] = createSignal<number>(0);
   const [isQuizCompleted, setIsQuizCompleted] = createSignal<boolean>(false);
   const [userAnswer, setUserAnswer] = createSignal<string>("");
@@ -139,15 +138,17 @@ const QuizPage: Component = () => {
     }
   }
 
+  const nbOfQuestions = Math.min(TOTAL_NB_OF_QUESTIONS, questions.length)
+
   return (
-    <div class="h-full flex flex-col justify-center items-center gap-5 text-white w-full container mx-auto">
+    <div class="flex flex-col justify-center items-center gap-5 text-white w-full container mx-auto">
       <Show
         when={!isQuizCompleted()}
-        fallback={<Finish score={userTotalScore()} />}
+        fallback={<Finish score={userTotalScore()} total={nbOfQuestions}/>}
       >
         <div class="mb-6 lg:mb-9 w-full container flex flex-col gap-4">
           <ul class="flex gap-2">
-            <For each={Array(TOTAL_NB_OF_QUESTIONS).fill(0)}>
+            <For each={Array(nbOfQuestions).fill(0)}>
               {(_, idx) => {
                 return (
                   <li
