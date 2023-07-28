@@ -8,7 +8,7 @@ body,
   height: 100%;
 }
 
-#root {
+body {
   background: rgb(34, 41, 56);
   background: linear-gradient(
     166deg,
