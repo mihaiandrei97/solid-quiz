@@ -163,7 +163,7 @@ const QuizPage: Component = () => {
             </For>
           </ul>
           <span class="ml-auto">
-            {currentQuestionIndex() + 1} / {TOTAL_NB_OF_QUESTIONS}
+            {currentQuestionIndex() + 1} / {nbOfQuestions}
           </span>
         </div>
         <Question
